@@ -19,7 +19,7 @@ const Header = ({setPage, setCurrentPage, setTvShowPage}) => {
         <div className="header__texto">
           <nav className="header__link">
             {window.location.pathname !== '/' && (
-                <NavLink to="/">Inicio</NavLink>
+                <NavLink to="/">Home</NavLink>
             )}
 
             {window.location.pathname !== '/movies' && (

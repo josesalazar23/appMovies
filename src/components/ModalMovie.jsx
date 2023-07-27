@@ -24,11 +24,11 @@ const ModalMovie = ({ modalShow, movieTitle, movieImg, movieInfo, setModalShow, 
                 </div>
                 <div className="modal-info">
                   <h2 className="modal-title">{movieTitle}</h2>
-                  <h3 className="modal-description">{movieDate}</h3>
+                  <h3 className="modal-title">{movieDate}</h3>
                   <h5 className="modal-description">{movieInfo}</h5>
                 </div>
               </div>
-            <button className="modal-close-btn" onClick={closeModal}>Cerrar Modal</button>
+            <button className="modal-close-btn" onClick={closeModal}>Close</button>
           </ReactModal>
         </div>
       </>

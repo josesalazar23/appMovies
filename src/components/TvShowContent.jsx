@@ -20,7 +20,7 @@ const TvShowContent = ({page, setPage, setContentLength, setCurrentPage, url, se
     }
 
     const scrollToTop = () => {
-        window.scrollTo({ top: 650, behavior: "smooth" });
+        window.scrollTo({ top: 20, behavior: "smooth" });
     };
 
     useEffect(() => {

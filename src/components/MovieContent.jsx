@@ -19,6 +19,10 @@ const MovieContent = ({page, setPage, setContentLength, setCurrentPage, url, set
   if(!movies) {
     setTitle("no se encontraron resultados");
   }
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 20, behavior: "smooth" });
+  };
   
   useEffect(() => {
     const fetchData = async () => {
@@ -53,6 +57,10 @@ const MovieContent = ({page, setPage, setContentLength, setCurrentPage, url, set
     setMovieInfo(movie.overview)
     setMovieDate(movie.release_date);
     setModalShow(true);
+  }
+
+  if(page) {
+    scrollToTop()
   }
 
   return (
