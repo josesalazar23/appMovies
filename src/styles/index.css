@@ -314,7 +314,7 @@ ul, ol {
 .modal-description {
   font-family: var(--fontTexts);
   color: white;
-  font-size: 12px;
+  font-size: 15px;
   margin: 20px 0;
 
 }
@@ -482,7 +482,7 @@ ul, ol {
   }
   .modal-description {
     font-family: var(--fontTexts);
-    font-size: 13px;
+    font-size: 15px;
     margin: 5px 0;
     padding: 0px;
     padding-bottom: 5px;
@@ -599,7 +599,7 @@ ul, ol {
   }
   .modal-description {
     font-family: var(--fontTexts);
-    font-size: 13px;
+    font-size: 15px;
     margin: 5px 0;
     padding: 0px;
     padding-bottom: 5px;

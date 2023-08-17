@@ -7,4 +7,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  define: {
+    'process.env.REACT_APP_API_KEY': JSON.stringify('addca2007d9e1f9e7fdccf326e9c2ac6'),
+  },
 })

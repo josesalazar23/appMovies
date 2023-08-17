@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 import axios from "axios";
 import MovieCard from "./MovieCard";
 import ModalMovie from "./ModalMovie";
 import MovieTypes from "./MovieTypes";
+import { UserContext } from "./AppMovies";
 
-const TvShowContent = ({page, setPage, setContentLength, setCurrentPage, url, setUrl, title, setTitle}) => {
+const TvShowContent = () => {
     const [tvShow, setTvShow] = useState([]);
     const [showMovieType, setShowMovieType] = useState(false);
     const [showSelectType, setShowSelectType] = useState(false);
@@ -13,7 +14,9 @@ const TvShowContent = ({page, setPage, setContentLength, setCurrentPage, url, se
     const [movieImg, setMovieImg] = useState([]);
     const [movieInfo, setMovieInfo] = useState([]);
     const [movieDate, setMovieDate] = useState([]);
-    const isFirstRender = true;
+    // const isFirstRender = true;
+
+    const {page, setPage, setContentLength, setCurrentPage, url, setUrl, title, setTitle} = useContext(UserContext);
 
     if(!tvShow) {
         setTitle("no results found");
@@ -39,9 +42,9 @@ const TvShowContent = ({page, setPage, setContentLength, setCurrentPage, url, se
             setTvShow(filteredMovies);
             setContentLength(filteredMovies.length);
             
-            if (isFirstRender) {
-                setContentLength(20);
-            }
+            // if (isFirstRender) {
+            //     setContentLength(20);
+            // }
 
           } catch (error) {
             console.log(error);

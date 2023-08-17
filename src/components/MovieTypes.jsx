@@ -75,13 +75,13 @@ const MovieTypes = ({
               value={searchMovie}
               onChange={handleChangeSearch}
               className="search-input"
-            />
+            /> 
             <button 
               onClick={handleFindMovie} 
               className="search-button"
               disabled={!searchMovie.trim()}
             >
-              Buscar pelicula
+              Search
             </button>
           </div>
         </form>

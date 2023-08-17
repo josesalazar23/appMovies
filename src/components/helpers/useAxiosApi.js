@@ -7,7 +7,7 @@ export const useFetchMainContent = () => {
     useEffect(() => {
         const handleFetch = async() => {
             try {
-                const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+                const apiKey = process.env.REACT_APP_API_KEY;
                 const response = await axios.get(
                   `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`
                 );
@@ -30,7 +30,7 @@ export const useFetchPopularMovies = () => {
   useEffect(() => {
       const handleFetch = async() => {
           try {
-              const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+              const apiKey = process.env.REACT_APP_API_KEY;
               const response = await axios.get(
                   `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
               );
@@ -53,7 +53,7 @@ export const useFetchNewMovies = () => {
   useEffect(() => {
       const handleFetch = async() => {
           try {
-              const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+              const apiKey = process.env.REACT_APP_API_KEY;
               const response = await axios.get(
                 `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=18&release_date.lte=1980-12-31`
               );
@@ -74,7 +74,7 @@ export const useFetchFamilyMovies = () => {
   useEffect(() => {
       const handleFetch = async() => {
           try {
-              const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+              const apiKey = process.env.REACT_APP_API_KEY;
               const response = await axios.get(
                 `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=99`
               );
@@ -95,7 +95,7 @@ export const useFetchMangaMovies = () => {
   useEffect(() => {
       const handleFetch = async() => {
           try {
-              const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+              const apiKey = process.env.REACT_APP_API_KEY;
               const response = await axios.get(
                 `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=16`
               );
@@ -116,7 +116,7 @@ export const useFetchNewTvShows = () => {
   useEffect(() => {
       const handleFetch = async() => {
           try {
-              const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+              const apiKey = process.env.REACT_APP_API_KEY;
               const response = await axios.get(
                   `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}`
               );

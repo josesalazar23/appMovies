@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, createContext, useContext  } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { UserContext } from "./AppMovies";
 
-const Header = ({setPage, setCurrentPage, setTvShowPage}) => {
+const Header = () => {
   const location = useLocation();
+  const {setPage, setTvShowPage, setCurrentPage} = useContext(UserContext);
 
   useEffect(() => {
     setCurrentPage(1);

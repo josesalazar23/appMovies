@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import { useLocation } from "react-router-dom";
+import { UserContext } from "./AppMovies";
 
-const Footer = ({page, setPage, tvShowPage, setTvShowPage, currentPage, setCurrentPage, contentLength}) => {
+const Footer = () => {
   const location = useLocation();
   const contentShow = (location.pathname === "/");
+
+  const {page, setPage, tvShowPage, setTvShowPage, currentPage, setCurrentPage, contentLength} = useContext(UserContext);
+
   const handleNextPage = () => {
     let pageIncrement = 1;
     if (location.pathname === "/movies") {
@@ -50,7 +55,7 @@ const Footer = ({page, setPage, tvShowPage, setTvShowPage, currentPage, setCurre
               <button className= "footer_button">{currentPage}</button> 
             }
 
-            {contentLength && contentLength > 19 && 
+            {contentLength && contentLength > 15 && 
               <button className="footer_button" onClick={handleNextPage}>next</button>
             }
 
