@@ -29,7 +29,7 @@ const Header = () => {
             )}
 
             {window.location.pathname !== '/TvShowContent' && (
-                <NavLink to="/TvShowContent">Tv Shows</NavLink>
+                <NavLink to="/TvShowContent">TV Shows</NavLink>
             )}
 
           </nav>
