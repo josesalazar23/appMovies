@@ -25,7 +25,7 @@ const MovieTypes = ({
       }
       if (showMovieType) {
         try {
-          const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+          const apiKey = process.env.REACT_APP_API_KEY;
           const response = await axios.get(
             `https://api.themoviedb.org/3/search/${url}?api_key=${apiKey}&query=${movieName}&page=${page}`
           );

@@ -35,11 +35,7 @@ function AppMovies() {
   return (
     <BrowserRouter>
       <UserContext.Provider value={userContextValue}>
-        <Header 
-          // setPage={setPage}
-          // setTvShowPage={setTvShowPage}
-          // setCurrentPage={setCurrentPage}
-        />
+        <Header />
         <Routes>
           <Route
             path="/" 
@@ -53,16 +49,7 @@ function AppMovies() {
             path="/movies"
             element={
               <>
-                <MovieContent 
-                  // page={page}
-                  // setPage={setPage}
-                  // setContentLength={setContentLength}
-                  // setCurrentPage={setCurrentPage}
-                  // url={url}
-                  // setUrl={setUrl}
-                  // title={title}
-                  // setTitle={setTitle}
-                />
+                <MovieContent />
               </>
             }
           />
@@ -70,30 +57,12 @@ function AppMovies() {
             path="/TvShowContent"
             element={
               <>
-                <TvShowContent
-                  // page={tvShowPage}
-                  // setPage={setTvShowPage}
-                  // setContentLength={setContentLength}
-                  // currentPage={currentPage}
-                  // setCurrentPage={setCurrentPage}
-                  // url={url}
-                  // setUrl={setUrl}
-                  // title={title}
-                  // setTitle={setTitle}
-                />
+                <TvShowContent />
               </>
             }
           />
         </Routes>
-        <Footer 
-          // setPage={setPage} 
-          // page={page} 
-          // setTvShowPage={setTvShowPage}
-          // tvShowPage={tvShowPage}
-          // currentPage={currentPage}
-          // setCurrentPage={setCurrentPage}
-          // contentLength={contentLength}
-        />
+        <Footer />
       </UserContext.Provider>
     </BrowserRouter>
   );

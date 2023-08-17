@@ -14,7 +14,6 @@ const TvShowContent = () => {
     const [movieImg, setMovieImg] = useState([]);
     const [movieInfo, setMovieInfo] = useState([]);
     const [movieDate, setMovieDate] = useState([]);
-    // const isFirstRender = true;
 
     const {page, setPage, setContentLength, setCurrentPage, url, setUrl, title, setTitle} = useContext(UserContext);
 
@@ -33,7 +32,7 @@ const TvShowContent = () => {
             }
             setUrl("tv");
           try {
-            const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+            const apiKey = process.env.REACT_APP_API_KEY;
             const response = await axios.get(
               `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}&page=${page}`
             );
@@ -42,10 +41,6 @@ const TvShowContent = () => {
             setTvShow(filteredMovies);
             setContentLength(filteredMovies.length);
             
-            // if (isFirstRender) {
-            //     setContentLength(20);
-            // }
-
           } catch (error) {
             console.log(error);
           }

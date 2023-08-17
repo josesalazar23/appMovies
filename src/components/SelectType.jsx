@@ -29,7 +29,7 @@ const SelectType = ({
       setSelectedType(selectedType);
   
       try {
-        const apiKey = "addca2007d9e1f9e7fdccf326e9c2ac6";
+        const apiKey = process.env.REACT_APP_API_KEY;
         const response = await axios.get(
           `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}&with_genres=${selectedType}&page=${page}`
         );
