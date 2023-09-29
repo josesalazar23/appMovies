@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { useFetchMainContent } from "./helpers/useAxiosApi";
-
+import { useSelector } from "react-redux";
 
 const MainPopularContent = () => {
-    const showPopularMovie = useFetchMainContent();
+
+    const showPopularMovie = useSelector(
+        (state) => state.user.mainNewContentData.popularMovies
+    );
+
     const [currentIndex, setCurrentIndex] = useState(0);
     
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentIndex((prevIndex) => (prevIndex + 1) % showPopularMovie.length);
-        }, 5000);
+        }, 5000); 
 
         return () => clearInterval(interval);
     }, [showPopularMovie]);
@@ -33,3 +36,10 @@ const MainPopularContent = () => {
 };
 
 export default MainPopularContent;
+
+
+
+
+
+
+

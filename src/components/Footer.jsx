@@ -1,42 +1,50 @@
 import { useContext } from "react";
 import { useLocation } from "react-router-dom";
-import { UserContext } from "./AppMovies";
+import { useSelector, useDispatch } from "react-redux";
+// import { UserContext } from "./AppMovies";
+import  { setPage, setTvShowPage, setCurrentPage } from "../reducers/user/userSlice";
 
 const Footer = () => {
   const location = useLocation();
   const contentShow = (location.pathname === "/");
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.user.page);
+  const tvShowPage = useSelector((state) => state.user.tvShowPage);
+  const currentPage = useSelector((state) => state.user.currentPage);
+  const contentLength = useSelector((state) => state.user.contentLength);
 
-  const {page, setPage, tvShowPage, setTvShowPage, currentPage, setCurrentPage, contentLength} = useContext(UserContext);
+
+  // const {page, setPage, tvShowPage, setTvShowPage, currentPage, setCurrentPage, contentLength} = useContext(UserContext);
 
   const handleNextPage = () => {
     let pageIncrement = 1;
     if (location.pathname === "/movies") {
-      setPage(page + pageIncrement);
+      dispatch(setPage(page + pageIncrement));
     }else {
-      setTvShowPage(tvShowPage + pageIncrement);
+      dispatch(setTvShowPage(tvShowPage + pageIncrement));
     }
-    setCurrentPage(currentPage + pageIncrement);
+    dispatch(setCurrentPage(currentPage + pageIncrement));
   };
 
   const handlePreviousPage = () => {
     if (location.pathname === "/movies") {
       if (page > 1) {
-        setPage(page - 1);
-        setCurrentPage(currentPage - 1);
+        dispatch(setPage(page - 1));
+        dispatch(setCurrentPage(currentPage - 1));
       }
     }
     if (location.pathname === "/TvShowContent") {
       if (tvShowPage > 1) {
-        setTvShowPage(tvShowPage - 1);
-        setCurrentPage(currentPage - 1);
+        dispatch(setTvShowPage(tvShowPage - 1));
+        dispatch(setCurrentPage(currentPage - 1));
       }
     }
   };
 
   const handleResetPage = () => {
-    setPage(1);
-    setTvShowPage(1);
-    setCurrentPage(1);
+    dispatch(setPage(1));
+    dispatch(setTvShowPage(1));
+    dispatch(setCurrentPage(1));
   }
   
   return (

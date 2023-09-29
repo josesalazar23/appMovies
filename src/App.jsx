@@ -1,13 +1,17 @@
+import React from 'react';
 
-import AppMovies from './components/AppMovies'
+import { Provider } from 'react-redux';
+import store from './store/store'; // Importa tu store de Redux
+import AppMovies from './components/AppMovies';
 
 function App() {
-  
   return (
-    <>
-      <AppMovies />
-    </>
-  )
+    <Provider store={store}>
+      
+        <AppMovies />
+      
+    </Provider>
+  );
 }
 
-export default App
+export default App;

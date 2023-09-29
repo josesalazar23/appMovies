@@ -1,148 +1,115 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-
-// section main Content
-export const useFetchMainContent = () => {
-    const [popularMovie, setPopularMovie] = useState([])
-    useEffect(() => {
-        const handleFetch = async() => {
-            try {
-                const apiKey = process.env.REACT_APP_API_KEY;
-                const response = await axios.get(
-                  `https://api.themoviedb.org/3/movie/now_playing?api_key=${apiKey}`
-                );
-    
-                const firstPopularMovies = response.data.results.slice(0, 12);
-                setPopularMovie(firstPopularMovies);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        handleFetch();
-    }, []); 
-
-    return popularMovie;
-};
 
 
+
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setPopularMovies,
+  setNewMovies,
+  setFamilyMovies,
+  setMangaMovies,
+} from "../../reducers/user/userSlice";
+
+import {
+  fetchPopularMovies,
+  fetchNewMovies,
+  fetchFamilyMovies,
+  fetchMangaMovies,
+} from "./api";
+
+// Hooks
 export const useFetchPopularMovies = () => {
-  const [popularMovie, setPopularMovie] = useState([])
+  const dispatch = useDispatch();
+  const popularMovies = useSelector(
+    (state) => state.user.mainNewContentData.popularMovies
+  );
+
   useEffect(() => {
-      const handleFetch = async() => {
-          try {
-              const apiKey = process.env.REACT_APP_API_KEY;
-              const response = await axios.get(
-                  `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`
-              );
-              const firstPopularMovies = response.data.results.slice(0, 12);
-              setPopularMovie(firstPopularMovies);
-          } catch (error) {
-              console.log(error);
-          }
-      }
+    if (!popularMovies.length) {
+      const handleFetch = async () => {
+        try {
+          const firstPopularMovies = await fetchPopularMovies();
+          dispatch(setPopularMovies(firstPopularMovies));
+        } catch (error) {
+          console.log(error);
+        }
+      };
       handleFetch();
-  }, []); 
+    }
+  }, [popularMovies, dispatch]);
 
-  return popularMovie;
+  return popularMovies;
 };
-
-
 
 export const useFetchNewMovies = () => {
-  const [popularMovie, setPopularMovie] = useState([])
-  useEffect(() => {
-      const handleFetch = async() => {
-          try {
-              const apiKey = process.env.REACT_APP_API_KEY;
-              const response = await axios.get(
-                `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=18&release_date.lte=1980-12-31`
-              );
-              const firstPopularMovies = response.data.results.slice(0, 12);
-              setPopularMovie(firstPopularMovies);
-          } catch (error) {
-              console.log(error);
-          }
-      }
-      handleFetch();
-  }, []); 
+  const dispatch = useDispatch();
+  const newMovies = useSelector(
+    (state) => state.user.mainNewContentData.newMovies
+  );
 
-  return popularMovie;
+  useEffect(() => {
+    if (!newMovies.length) {
+      const handleFetch = async () => {
+        try {
+          const firstNewMovies = await fetchNewMovies();
+          dispatch(setNewMovies(firstNewMovies));
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      handleFetch();
+    }
+  }, [newMovies, dispatch]);
+
+  return newMovies;
 };
 
 export const useFetchFamilyMovies = () => {
-  const [popularMovie, setPopularMovie] = useState([])
-  useEffect(() => {
-      const handleFetch = async() => {
-          try {
-              const apiKey = process.env.REACT_APP_API_KEY;
-              const response = await axios.get(
-                `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=99`
-              );
-              const firstPopularMovies = response.data.results.slice(0, 12);
-              setPopularMovie(firstPopularMovies);
-          } catch (error) {
-              console.log(error);
-          }
-      }
-      handleFetch();
-  }, []); 
+  const dispatch = useDispatch();
+  const familyMovies = useSelector(
+    (state) => state.user.mainNewContentData.familyMovies
+  );
 
-  return popularMovie;
+  useEffect(() => {
+    if (!familyMovies.length) {
+      const handleFetch = async () => {
+        try {
+          const firstFamilyMovies = await fetchFamilyMovies();
+          dispatch(setFamilyMovies(firstFamilyMovies));
+        } catch (error) {
+          console.log(error);
+          console.log("error desde la llamada a la api");
+        }
+      };
+      handleFetch();
+    }
+  }, [familyMovies, dispatch]);
+
+  return familyMovies;
 };
 
 export const useFetchMangaMovies = () => {
-  const [popularMovie, setPopularMovie] = useState([])
+  const dispatch = useDispatch();
+  const mangaMovies = useSelector(
+    (state) => state.user.mainNewContentData.mangaMovies
+  );
+
   useEffect(() => {
-      const handleFetch = async() => {
-          try {
-              const apiKey = process.env.REACT_APP_API_KEY;
-              const response = await axios.get(
-                `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc&with_genres=16`
-              );
-              const firstPopularMovies = response.data.results.slice(0, 12);
-              setPopularMovie(firstPopularMovies);
-          } catch (error) {
-              console.log(error);
-          }
-      }
+    if (!mangaMovies.length) {
+      const handleFetch = async () => {
+        try {
+          const firstMangaMovies = await fetchMangaMovies();
+          dispatch(setMangaMovies(firstMangaMovies));
+        } catch (error) {
+          console.log(error);
+        }
+      };
       handleFetch();
-  }, []); 
+    }
+  }, [mangaMovies, dispatch]);
 
-  return popularMovie;
+  return mangaMovies;
 };
-
-export const useFetchNewTvShows = () => {
-  const [popularMovie, setPopularMovie] = useState([])
-  useEffect(() => {
-      const handleFetch = async() => {
-          try {
-              const apiKey = process.env.REACT_APP_API_KEY;
-              const response = await axios.get(
-                  `https://api.themoviedb.org/3/tv/popular?api_key=${apiKey}`
-              );
-              const firstPopularMovies = response.data.results.slice(0, 12);
-              setPopularMovie(firstPopularMovies);
-          } catch (error) {
-              console.log(error);
-          }
-      }
-      handleFetch();
-  }, []); 
-
-  return popularMovie;
-};
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -1,10 +1,11 @@
 import MovieCard from "./MovieCard";
 import SelectType from "./SelectType";
 import MovieTypes from "./MovieTypes";
-import { useEffect, useState, createContext, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import ModalMovie from "./ModalMovie";
-import { UserContext } from "./AppMovies";
+import { setPage, setContentLength, setCurrentPage, setUrl, setTitle } from "../reducers/user/userSlice";
 
 const MovieContent = () => {
   const [showMovieType, setShowMovieType] = useState(false);
@@ -15,10 +16,13 @@ const MovieContent = () => {
   const [movieImg, setMovieImg] = useState([]);
   const [movieInfo, setMovieInfo] = useState([]);
   const [movieDate, setMovieDate] = useState([]);
-  const {page, setPage, setContentLength, setCurrentPage, url, setUrl, title, setTitle} = useContext(UserContext);
+
+  const dispatch = useDispatch();
+  const page = useSelector((state) => state.user.page);
+  const title = useSelector((state) => state.user.title);
 
   if(!movies) {
-    setTitle("no se encontraron resultados");
+    dispatch(setTitle("no se encontraron resultados"));
   }
 
   const scrollToTop = () => {
@@ -30,16 +34,16 @@ const MovieContent = () => {
       if (showSelectType || showMovieType) {
         return;
       }
-      setUrl("movie")
+      dispatch(setUrl("movie"));
       try {
         const apiKey = process.env.REACT_APP_API_KEY;
         const response = await axios.get(
           `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=${page}`
         );
         const filteredMovies = response.data.results.filter(movie => movie.poster_path !== null);
-        setTitle("New Movies Added");
+        dispatch(setTitle("New Movies Added"));
         setMovies(filteredMovies);
-        setContentLength(filteredMovies.length);
+        dispatch(setContentLength(filteredMovies.length));
 
       } catch (error) {
         console.log(error);
@@ -73,7 +77,7 @@ const MovieContent = () => {
           setShowMovieType={setShowMovieType}
           setPage={setPage}
           setCurrentPage={setCurrentPage}
-          url={url}
+          // url={url}
           setContentLength={setContentLength}
           setTitle={setTitle}
         />

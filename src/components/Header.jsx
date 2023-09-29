@@ -1,16 +1,24 @@
 import { useEffect, createContext, useContext  } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { UserContext } from "./AppMovies";
+import { setCurrentPage, setPage, setTvShowPage } from "../reducers/user/userSlice";
+// import { UserContext } from "./AppMovies";
 
 const Header = () => {
   const location = useLocation();
-  const {setPage, setTvShowPage, setCurrentPage} = useContext(UserContext);
+  const dispatch = useDispatch();
+  // const {setPage, setTvShowPage, setCurrentPage} = useContext(UserContext);
 
+  // const page = useSelector((state) => state.user.page);
+  // const tvShowPage = useSelector((state) => state.user.tvShowPage);
+  // const currentPage = useSelector((state) => state.user.currentPage);
+
+  
   useEffect(() => {
-    setCurrentPage(1);
-    setPage(1);
-    setTvShowPage(1);
-  }, [location.pathname]);
+    dispatch(setCurrentPage(1));
+    dispatch(setPage(1));
+    dispatch(setTvShowPage(1));
+  }, [location.pathname, dispatch]);
 
   return (
     <div>
