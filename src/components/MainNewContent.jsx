@@ -1,10 +1,7 @@
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
 import MovieCard from "./MovieCard";
 
-
 const MainNewContent = () => {
-
   // peliculas de cada categoría desde el estado
   const popularMovies = useSelector(
     (state) => state.user.mainNewContentData.popularMovies
